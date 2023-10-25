@@ -14,6 +14,7 @@ public interface TicketInterface {
      *
      * @param ticket       билет для которого добавляются товары
      * @param addtionsList список добавляемых товаров
+     * Сложность O(1)
      */
     static void updateAdditions(Ticket ticket, List<additions> addtionsList) {
         Long id = ticket.getId();
@@ -27,6 +28,7 @@ public interface TicketInterface {
      *
      * @param ticket билет, по id которого добавляется запись
      * в коллекцию билетов и дополнительных товаров
+     * Сложность O(1)
      */
     static void init(Ticket ticket) {
         BartenderInterface.kombo.put(ticket.getId(), Collections.emptyList());
