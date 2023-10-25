@@ -1,6 +1,8 @@
 package ru.naumen.collection.task3;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -20,13 +22,12 @@ public class WarAndPeace {
 
 
     public static void main(String[] args) {
-//        Long time = System.currentTimeMillis();
         WordParser wp = new WordParser(WAR_AND_PEACE_FILE_PATH);
         wp.forEachWord(str -> TextAnalytics.addToCounter(str));
-        TextAnalytics.getTop10MostFrequency();
-        TextAnalytics.getLast10LowestFrequency();
-//        System.out.println(System.currentTimeMillis() - time);
-         //1134 LinkedHashMap
-        // 1480 HashMap
+        List<Map.Entry<String, Integer>> mostFreqWords = TextAnalytics.getEntryStream();
+        System.out.println("Наиболее используемые:");
+        TextAnalytics.printResult(mostFreqWords, true);
+        System.out.println("Наименее используемые:");
+        TextAnalytics.printResult(mostFreqWords, false);
     }
 }
