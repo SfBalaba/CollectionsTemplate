@@ -3,6 +3,7 @@ package ru.naumen.collection.task1;
 import ru.naumen.collection.task2.Ticket;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Дано:
@@ -46,11 +47,25 @@ public class Task1 {
 
     /**
      * Возвращает дубликаты пользователей, которые есть в обеих коллекциях
+     *  <p>n - количество элементов в collA, c1 - количество элементов в collB</p>
+     *  <p>Итоговая сложность O(n) = 2n + c1</p>
+     *  <p>c2 = 2 потому, что внутри цикла совершается 2 простые операции contains и add - O(1)</p>
+     *  <p>HashSet выбрана потому, что операция contains,</p>
+     *  <p>по сути обращение по хэшу имеет сложность O(1)</p>
+     *  <p>условие корректной работы hashCode и equals соблюдается.</p>
+     *  <p>LinkedList выбрана потому, что операция add имеет сложность O(1)</p>
+     *  <p>текущий элемент содержит ссылки на предыдущий и следующий элементы,</p>
+     *  <p>происходит переписывание пары ссылок.</p>
+     *  <p>Итерация по элементам при добавлении в конец не требуется, в отличие от ArrayList</p>
      */
     public static List<User> findDuplicates(Collection<User> collA, Collection<User> collB) {
-        Set<User> set2 = new HashSet<>(collB);
-        Set<User> result = new HashSet<>(collA);
-        result.retainAll(set2);
-        return new ArrayList<>(result);
+        Set<User> setA = new HashSet<>(collA);
+        List<User> result = new LinkedList<>();
+        for (User user : collB) {
+            if(setA.contains(user))
+                result.add(user);
+        }
+         return result;
+
     }
 }

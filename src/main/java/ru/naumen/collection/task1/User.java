@@ -29,10 +29,6 @@ public class User {
         this.email = email;
         this.passwordHash = password;
     }
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -40,5 +36,12 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) && Objects.equals(email, user.email) && Arrays.equals(passwordHash, user.passwordHash);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(username, email);
+        result = 31 * result + Arrays.hashCode(passwordHash);
+        return result;
     }
 }

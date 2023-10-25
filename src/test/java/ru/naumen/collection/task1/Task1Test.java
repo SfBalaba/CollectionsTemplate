@@ -28,7 +28,7 @@ public class Task1Test {
         collA.add(new User("Sasha", "sanya@gmail.com", new byte[]{12, 24, 1, 5}));
 
         List<User> out = findDuplicates(collA, collB);
-        Assert.assertEquals(0, out.size());
+        Assert.assertEquals(1, out.size());
     }
 
     @Test
