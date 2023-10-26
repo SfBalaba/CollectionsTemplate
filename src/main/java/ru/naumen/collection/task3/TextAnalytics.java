@@ -19,17 +19,19 @@ public class TextAnalytics {
     /**
      * подсчитывает частоту слов в тексте
      * @param str слово для которого обновляется чатсота встречаемости в тексте
-     *  сложность операций get, put - O(1)
+     *  сложность операций get, put - O(1) потому что поиск по хэшу
+     *  containsKey O(1) потому что поиск по хэшу
+     *  Итогововая сложность O(1)
      */
     static void addToCounter(String str) {
-       Object frequency = (Object)counter.get(str);
-       if(frequency == null){
-           counter.put(str, 1);
+       if(counter.containsKey(str)) {
+           counter.put(str, counter.get(str + 1));
        }
        else{
-           counter.put(str, (int)frequency+1);
+           counter.put(str, 1);
+           }
        }
-    }
+
 
 
     /**
