@@ -1,5 +1,7 @@
 package ru.naumen.collection.task2;
 
+import java.util.List;
+
 /**
  * Дано:
  * <pre>
@@ -23,6 +25,13 @@ package ru.naumen.collection.task2;
  * @since 19.10.2023
  */
 public class Task2 {
-
-    // TODO
+    public static void main(String[] args) {
+        Ticket t = new Ticket(1323, "client1");
+        TicketInterface.updateAdditions(t, List.of(additions.Drinks, additions.Eat));
+        Ticket t1 = new Ticket(1323, "client");
+        System.out.println(t.equals(t1));
+        TicketInterface.updateAdditions(t1, List.of(additions.Eat));
+        System.out.println(BartenderInterface.scanTicket(t1));
+        System.out.println(BartenderInterface.scanTicket(t));
+    }
 }

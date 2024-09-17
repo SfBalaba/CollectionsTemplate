@@ -1,6 +1,9 @@
 package ru.naumen.collection.task3;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * <p>Написать консольное приложение, которое принимает на вход произвольный текстовый файл в формате txt.
@@ -17,7 +20,14 @@ public class WarAndPeace {
     private static final Path WAR_AND_PEACE_FILE_PATH = Path.of("src/main/resources",
             "Лев_Толстой_Война_и_мир_Том_1,_2,_3,_4_(UTF-8).txt");
 
+
     public static void main(String[] args) {
-        // TODO
+        WordParser wp = new WordParser(WAR_AND_PEACE_FILE_PATH);
+        wp.forEachWord(str -> TextAnalytics.addToCounter(str));
+        List<Map.Entry<String, Integer>> mostFreqWords = TextAnalytics.getEntryStream();
+        System.out.println("Наиболее используемые:");
+        TextAnalytics.printResult(mostFreqWords, true);
+        System.out.println("Наименее используемые:");
+        TextAnalytics.printResult(mostFreqWords, false);
     }
 }
